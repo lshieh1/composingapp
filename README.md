@@ -6,6 +6,7 @@ This is going to be a music composing app where users can share their compositio
 - Ruby on Rails (backend)
 - React.js (frontend)
 - Muse (song maker package)
+- Audio Playback (song player)
 - Devise (user-auth)
 
 ## Reach Goals
