@@ -18,9 +18,13 @@ I'm hoping to make the user experience as efficient as possible.  Letting the us
 4. pretty it up
 
 ## ERD
-https://github.com/lshieh1/composingapp/blob/master/database_tables.png
+https://github.com/lshieh1/composingapp/blob/master/images/database_tables.png
 
 ## Wireframes
+https://github.com/lshieh1/composingapp/blob/master/images/wireframes.png
+
+## Challenges
+Working with the muse gem and connecting it with front-end.
 
 
 
