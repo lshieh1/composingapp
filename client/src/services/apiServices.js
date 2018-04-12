@@ -2,31 +2,36 @@ import axios from 'axios'
 
 class apiServices {
 
-	userLogin(request) {
-		return axios({
-			method: 'POST',
-			url: "http://localhost:3000/api/user_token",
-			data: request
-		})
-	}
-
-	userSignup(userInfo) {
-		return axios({
-			method: 'POST',
-			url: "/api/users",
-			data: {
-				email: userInfo.email,
-				password: userInfo.password,
-				password_confirmation: userInfo.password_confirmation
-			}
-
-		})
-	}
-
 	getAllSongs() {
 		return axios.get('/api/songs')
 	}
 
+	getOneSong(id) {
+		return axios.get(`/api/songs/${id}`)
+	}
+
+	createSong(song) {
+		return axios({
+			method: 'POST',
+			url: '/api/songs',
+			data: {
+				title: song.title,
+				created_by: song.created_by
+			}
+		})
+	}
+
+	updateSong(song,id) {
+		return axios({
+			method: 'PUT',
+			url: `/api/songs/${id}`,
+			data: {
+				notes: song.notes,
+				pattern: song.pattern,
+				recently_edited_by: song.recently_edited_by
+			}
+		})
+	}
 }
 
 export default new apiServices()

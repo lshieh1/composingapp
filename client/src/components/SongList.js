@@ -1,19 +1,21 @@
 import React, {Component} from 'react'
-import apiServices from './services/apiServices'
+import apiServices from '../services/apiServices'
 
 import Song from './Song'
+import SongAddForm from './SongAddForm'
 
 class SongList extends Component {
 	constructor() {
 		super()
-		this.setState({
+		this.state ={
 			apiDataLoaded: false,
 			apiData: null
-		})
+		}
 	}
 
 	componentDidMount() {
 		apiServices.getAllSongs().then(songs => {
+			console.log(songs)
 			this.setState({
 				apiDataLoaded: true,
 				apiData: songs.data
@@ -33,6 +35,7 @@ class SongList extends Component {
 		return (
 			<div className='song-list'>
 				{this.state.apiDataLoaded ? this.renderSongs() : <h1>Loading...</h1>}
+				<SongAddForm />
 			</div>
 		)
 	}

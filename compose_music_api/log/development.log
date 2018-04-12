@@ -1,857 +1,110 @@
-  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-  [1m[35m (24.8ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (14.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (23.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
   [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (486.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "compose_music_api_development"[0m
+  [1m[35m (225.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "compose_music_api_test"[0m
+  [1m[35m (198.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (113.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5905378263878046555)[0m
   [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
-  [1m[35m (599.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "compose_music_api_development"[0m
-  [1m[35m (228.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "compose_music_api_test"[0m
-  [1m[35m (204.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
-  [1m[35m (151.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
-  [1m[35m (10.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5905378263878046555)[0m
-  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-Migrating to CreateUsers (20180411150936)
+Migrating to CreateSongs (20180412134935)
   [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
-  [1m[35m (91.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "password_digest" character varying, "email" character varying, "name" character varying, "auth_token" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
-  [1m[35m (57.4ms)[0m  [1m[35mCREATE  INDEX  "index_users_on_username" ON "users"  ("username")[0m
-  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180411150936"]]
-  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (94.9ms)[0m  [1m[35mCREATE TABLE "songs" ("id" bigserial primary key, "title" character varying, "notes" character varying, "pattern" character varying, "created_by" character varying, "recently_edited_by" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180412134935"]]
+  [1m[35m (12.7ms)[0m  [1m[35mCOMMIT[0m
   [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
-  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
-  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-04-11 15:13:57.241638"], ["updated_at", "2018-04-11 15:13:57.241638"]]
-  [1m[35m (8.0ms)[0m  [1m[35mCOMMIT[0m
-  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(5905378263878046555)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-04-12 14:16:34.179934"], ["updated_at", "2018-04-12 14:16:34.179934"]]
+  [1m[35m (7.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5905378263878046555)[0m
   [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-Started GET "/" for 127.0.0.1 at 2018-04-11 11:33:15 -0400
-  [1m[35m (4.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-Processing by Rails::WelcomeController#index as */*
-  Rendering /home/lillian/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb
-  Rendered /home/lillian/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb (36.4ms)
-Completed 200 OK in 198ms (Views: 153.3ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/login" for 127.0.0.1 at 2018-04-11 11:35:15 -0400
-  
-ActionController::RoutingError (No route matches [GET] "/login"):
-  
-actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
-railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
-rack (2.0.4) lib/rack/runtime.rb:22:in `call'
-activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
-rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
-railties (5.1.6) lib/rails/engine.rb:522:in `call'
-puma (3.11.3) lib/puma/configuration.rb:225:in `call'
-puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
-puma (3.11.3) lib/puma/server.rb:438:in `process_client'
-puma (3.11.3) lib/puma/server.rb:302:in `block in run'
-puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
-Started POST "/login" for 127.0.0.1 at 2018-04-11 11:35:25 -0400
-Processing by SessionsController#create as */*
-  [1m[36mUser Load (57.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
-Completed 500 Internal Server Error in 191ms (ActiveRecord: 68.3ms)
-
-
-  
-NoMethodError (undefined method `render_unauthorized' for #<SessionsController:0x0055f5873c4c40>
-Did you mean?  render_to_body):
-  
-app/controllers/sessions_controller.rb:9:in `create'
-Started POST "/" for 127.0.0.1 at 2018-04-11 11:40:29 -0400
-  
-ActionController::RoutingError (No route matches [POST] "/"):
-  
-actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
-railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
-rack (2.0.4) lib/rack/runtime.rb:22:in `call'
-activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
-rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
-railties (5.1.6) lib/rails/engine.rb:522:in `call'
-puma (3.11.3) lib/puma/configuration.rb:225:in `call'
-puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
-puma (3.11.3) lib/puma/server.rb:438:in `process_client'
-puma (3.11.3) lib/puma/server.rb:302:in `block in run'
-puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
-Started POST "/users" for 127.0.0.1 at 2018-04-11 11:40:36 -0400
-Processing by UsersController#create as */*
-Completed 400 Bad Request in 4ms (ActiveRecord: 0.0ms)
-
-
-  
-ActionController::ParameterMissing (param is missing or the value is empty: user):
-  
-app/controllers/users_controller.rb:17:in `user_params'
-app/controllers/users_controller.rb:5:in `create'
-Started POST "/users" for 127.0.0.1 at 2018-04-11 11:42:33 -0400
-Processing by UsersController#create as */*
-  Parameters: {"username"=>"lshieh", "email"=>"me@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "name"=>"lillian", "user"=>{"username"=>"lshieh", "email"=>"me@gmail.com", "name"=>"lillian"}}
-  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "lshieh"], ["LIMIT", 1]]
-  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
-Completed 422 Unprocessable Entity in 180ms (ActiveRecord: 93.8ms)
-
-
-  
-ActiveRecord::RecordInvalid (Validation failed: Password can't be blank):
-  
-app/controllers/users_controller.rb:5:in `create'
-Started POST "/users" for 127.0.0.1 at 2018-04-11 11:42:59 -0400
-Processing by UsersController#create as */*
-  Parameters: {"username"=>"lshieh", "email"=>"me@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "name"=>"lillian", "user"=>{"username"=>"lshieh", "email"=>"me@gmail.com", "name"=>"lillian"}}
+  [1m[35m (3.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "lshieh"], ["LIMIT", 1]]
-  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
-Completed 422 Unprocessable Entity in 17ms (ActiveRecord: 0.9ms)
+  [1m[35mSQL (57.4ms)[0m  [1m[32mINSERT INTO "songs" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "test"], ["created_by", "lil"], ["created_at", "2018-04-12 15:25:25.263126"], ["updated_at", "2018-04-12 15:25:25.263126"]]
+  [1m[35m (94.6ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/api/songs" for 127.0.0.1 at 2018-04-12 11:36:38 -0400
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SongsController#index as HTML
+  [1m[36mSong Load (17.1ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+Completed 200 OK in 76ms (Views: 25.2ms | ActiveRecord: 30.9ms)
 
 
-  
-ActiveRecord::RecordInvalid (Validation failed: Password can't be blank):
-  
-app/controllers/users_controller.rb:5:in `create'
-Started POST "/users" for 127.0.0.1 at 2018-04-11 11:43:11 -0400
-Processing by UsersController#create as */*
-  Parameters: {"username"=>"lshieh", "email"=>"me@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "name"=>"lillian", "user"=>{"username"=>"lshieh", "email"=>"me@gmail.com", "name"=>"lillian"}}
-Unpermitted parameter: :user
+Started GET "/api/songs" for 127.0.0.1 at 2018-04-12 11:38:57 -0400
+Processing by SongsController#index as HTML
+  [1m[36mSong Load (0.8ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+Completed 200 OK in 27ms (Views: 10.5ms | ActiveRecord: 16.6ms)
+
+
+Started GET "/api/songs" for 127.0.0.1 at 2018-04-12 11:42:14 -0400
+Processing by SongsController#index as HTML
+  [1m[36mSong Load (0.6ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+Completed 200 OK in 4ms (Views: 2.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/songs" for 127.0.0.1 at 2018-04-12 11:43:08 -0400
+Processing by SongsController#index as HTML
+  [1m[36mSong Load (0.5ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/songs" for 127.0.0.1 at 2018-04-12 11:43:27 -0400
+Processing by SongsController#index as HTML
+  [1m[36mSong Load (0.4ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/api/songs" for 127.0.0.1 at 2018-04-12 11:43:58 -0400
+Processing by SongsController#create as HTML
+  Parameters: {"title"=>"test2", "created_by"=>"shieh", "song"=>{"title"=>"test2", "created_by"=>"shieh"}}
+Unpermitted parameter: :song
   [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "lshieh"], ["LIMIT", 1]]
-  [1m[35mSQL (48.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "email", "name", "auth_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "lshieh"], ["password_digest", "$2a$10$dENE7sjDI7GupWt76yzAme7eKyRWonNlvrEG76VvyaEJNvLyyLYGy"], ["email", "me@gmail.com"], ["name", "lillian"], ["auth_token", "BCejk1aDgXbRgGAofFzaNQh6"], ["created_at", "2018-04-11 15:43:11.933710"], ["updated_at", "2018-04-11 15:43:11.933710"]]
-  [1m[35m (254.4ms)[0m  [1m[35mCOMMIT[0m
-Completed 200 OK in 403ms (Views: 0.2ms | ActiveRecord: 303.4ms)
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "songs" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "test2"], ["created_by", "shieh"], ["created_at", "2018-04-12 15:43:58.379757"], ["updated_at", "2018-04-12 15:43:58.379757"]]
+  [1m[35m (96.2ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 102ms (Views: 0.5ms | ActiveRecord: 97.0ms)
 
 
-Started POST "/orofile" for 127.0.0.1 at 2018-04-11 11:44:21 -0400
-  
-ActionController::RoutingError (No route matches [POST] "/orofile"):
-  
-actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
-railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
-rack (2.0.4) lib/rack/runtime.rb:22:in `call'
-activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
-rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
-railties (5.1.6) lib/rails/engine.rb:522:in `call'
-puma (3.11.3) lib/puma/configuration.rb:225:in `call'
-puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
-puma (3.11.3) lib/puma/server.rb:438:in `process_client'
-puma (3.11.3) lib/puma/server.rb:302:in `block in run'
-puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
-Started GET "/orofile" for 127.0.0.1 at 2018-04-11 11:44:29 -0400
-  
-ActionController::RoutingError (No route matches [GET] "/orofile"):
-  
-actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
-railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
-rack (2.0.4) lib/rack/runtime.rb:22:in `call'
-activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
-rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
-railties (5.1.6) lib/rails/engine.rb:522:in `call'
-puma (3.11.3) lib/puma/configuration.rb:225:in `call'
-puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
-puma (3.11.3) lib/puma/server.rb:438:in `process_client'
-puma (3.11.3) lib/puma/server.rb:302:in `block in run'
-puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
-Started POST "/profile" for 127.0.0.1 at 2018-04-11 11:44:41 -0400
-  
-ActionController::RoutingError (No route matches [POST] "/profile"):
-  
-actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
-railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
-rack (2.0.4) lib/rack/runtime.rb:22:in `call'
-activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
-rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
-railties (5.1.6) lib/rails/engine.rb:522:in `call'
-puma (3.11.3) lib/puma/configuration.rb:225:in `call'
-puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
-puma (3.11.3) lib/puma/server.rb:438:in `process_client'
-puma (3.11.3) lib/puma/server.rb:302:in `block in run'
-puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
-Started GET "/profile" for 127.0.0.1 at 2018-04-11 11:44:44 -0400
-Processing by UsersController#profile as */*
-  Parameters: {"user"=>{}}
-Filter chain halted as :require_login rendered or redirected
-Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+Started GET "/api/songs" for 127.0.0.1 at 2018-04-12 11:43:58 -0400
+Processing by SongsController#index as HTML
+  [1m[36mSong Load (0.3ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.3ms)
 
 
-Started POST "/login" for 127.0.0.1 at 2018-04-11 11:45:38 -0400
-Processing by SessionsController#create as */*
-  Parameters: {"username"=>"lshieh", "email"=>"me@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "name"=>"lillian", "session"=>{"username"=>"lshieh", "email"=>"me@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "name"=>"lillian"}}
-  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "lshieh"], ["LIMIT", 1]]
-  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND ("users"."id" != $2) LIMIT $3[0m  [["username", "lshieh"], ["id", 1], ["LIMIT", 1]]
-  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "9ZNYZ4jE9HAs3JgbGuGE5AFx"], ["updated_at", "2018-04-11 15:45:39.079237"], ["id", 1]]
-  [1m[35m (13.7ms)[0m  [1m[35mCOMMIT[0m
-Completed 200 OK in 151ms (Views: 0.2ms | ActiveRecord: 15.8ms)
+Started GET "/api/songs" for 127.0.0.1 at 2018-04-12 11:44:48 -0400
+Processing by SongsController#index as HTML
+  [1m[36mSong Load (0.5ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.5ms)
 
 
-Started POST "/login" for 127.0.0.1 at 2018-04-11 11:46:06 -0400
-Processing by SessionsController#create as */*
-  Parameters: {"email"=>"me@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"me@gmail.com", "password"=>"[FILTERED]"}}
-  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
-Completed 500 Internal Server Error in 56ms (ActiveRecord: 0.4ms)
+Started GET "/api/songs" for 127.0.0.1 at 2018-04-12 11:47:33 -0400
+Processing by SongsController#index as HTML
+  [1m[36mSong Load (0.4ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.4ms)
 
 
-  
-NoMethodError (undefined method `render_unauthorized' for #<SessionsController:0x0055f587d67f90>
-Did you mean?  render_to_body):
-  
-app/controllers/sessions_controller.rb:9:in `create'
-Started POST "/login" for 127.0.0.1 at 2018-04-11 11:47:12 -0400
-Processing by SessionsController#create as */*
-  Parameters: {"username"=>"lshieh", "password"=>"[FILTERED]", "session"=>{"username"=>"lshieh", "password"=>"[FILTERED]"}}
-  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "lshieh"], ["LIMIT", 1]]
-  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND ("users"."id" != $2) LIMIT $3[0m  [["username", "lshieh"], ["id", 1], ["LIMIT", 1]]
-  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "NxLNPd8MkZYEgD5NNabj3LkU"], ["updated_at", "2018-04-11 15:47:12.852830"], ["id", 1]]
-  [1m[35m (29.5ms)[0m  [1m[35mCOMMIT[0m
-Completed 200 OK in 120ms (Views: 0.2ms | ActiveRecord: 30.7ms)
+Started GET "/api/songs" for 127.0.0.1 at 2018-04-12 11:48:39 -0400
+Processing by SongsController#index as HTML
+  [1m[36mSong Load (0.3ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.3ms)
 
 
-Started POST "/profile" for 127.0.0.1 at 2018-04-11 11:47:35 -0400
-  
-ActionController::RoutingError (No route matches [POST] "/profile"):
-  
-actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
-railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
-rack (2.0.4) lib/rack/runtime.rb:22:in `call'
-activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
-rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
-railties (5.1.6) lib/rails/engine.rb:522:in `call'
-puma (3.11.3) lib/puma/configuration.rb:225:in `call'
-puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
-puma (3.11.3) lib/puma/server.rb:438:in `process_client'
-puma (3.11.3) lib/puma/server.rb:302:in `block in run'
-puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
-Started GET "/profile" for 127.0.0.1 at 2018-04-11 11:47:52 -0400
-Processing by UsersController#profile as */*
-  Parameters: {"user"=>{}}
-Filter chain halted as :require_login rendered or redirected
-Completed 401 Unauthorized in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+Started GET "/api/songs" for 127.0.0.1 at 2018-04-12 11:49:50 -0400
+Processing by SongsController#index as HTML
+  [1m[36mSong Load (0.4ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.4ms)
 
 
-Started POST "/login" for 127.0.0.1 at 2018-04-11 11:48:08 -0400
-Processing by SessionsController#create as */*
-  Parameters: {"username"=>"lshieh", "password"=>"[FILTERED]", "session"=>{"username"=>"lshieh", "password"=>"[FILTERED]"}}
-  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "lshieh"], ["LIMIT", 1]]
-  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND ("users"."id" != $2) LIMIT $3[0m  [["username", "lshieh"], ["id", 1], ["LIMIT", 1]]
-  [1m[35mSQL (181.8ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "qBLhgQGPtxodasChsG6eDwki"], ["updated_at", "2018-04-11 15:48:08.641234"], ["id", 1]]
-  [1m[35m (491.0ms)[0m  [1m[35mCOMMIT[0m
-Completed 200 OK in 767ms (Views: 0.3ms | ActiveRecord: 673.8ms)
+Started GET "/api/songs" for 127.0.0.1 at 2018-04-12 11:50:40 -0400
+Processing by SongsController#index as HTML
+  [1m[36mSong Load (0.4ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.4ms)
 
 
-Started GET "/profile" for 127.0.0.1 at 2018-04-11 11:49:29 -0400
-Processing by UsersController#profile as */*
-  Parameters: {"user"=>{}}
-Filter chain halted as :require_login rendered or redirected
-Completed 401 Unauthorized in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+Started GET "/api/songs" for 127.0.0.1 at 2018-04-12 11:51:30 -0400
+Processing by SongsController#index as HTML
+  [1m[36mSong Load (0.4ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.4ms)
 
 
-Started GET "/profile" for 127.0.0.1 at 2018-04-11 11:50:46 -0400
-Processing by UsersController#profile as */*
-  Parameters: {"user"=>{}}
-Filter chain halted as :require_login rendered or redirected
-Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/users" for 127.0.0.1 at 2018-04-11 11:51:12 -0400
-  
-AbstractController::ActionNotFound (The action 'index' could not be found for UsersController):
-  
-actionpack (5.1.6) lib/abstract_controller/base.rb:119:in `process'
-actionpack (5.1.6) lib/action_controller/metal.rb:189:in `dispatch'
-actionpack (5.1.6) lib/action_controller/metal.rb:253:in `dispatch'
-actionpack (5.1.6) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
-actionpack (5.1.6) lib/action_dispatch/routing/route_set.rb:31:in `serve'
-actionpack (5.1.6) lib/action_dispatch/journey/router.rb:50:in `block in serve'
-actionpack (5.1.6) lib/action_dispatch/journey/router.rb:33:in `each'
-actionpack (5.1.6) lib/action_dispatch/journey/router.rb:33:in `serve'
-actionpack (5.1.6) lib/action_dispatch/routing/route_set.rb:844:in `call'
-rack (2.0.4) lib/rack/etag.rb:25:in `call'
-rack (2.0.4) lib/rack/conditional_get.rb:25:in `call'
-rack (2.0.4) lib/rack/head.rb:12:in `call'
-activerecord (5.1.6) lib/active_record/migration.rb:556:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
-activesupport (5.1.6) lib/active_support/callbacks.rb:97:in `run_callbacks'
-actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
-railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
-rack (2.0.4) lib/rack/runtime.rb:22:in `call'
-activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
-rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
-railties (5.1.6) lib/rails/engine.rb:522:in `call'
-puma (3.11.3) lib/puma/configuration.rb:225:in `call'
-puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
-puma (3.11.3) lib/puma/server.rb:438:in `process_client'
-puma (3.11.3) lib/puma/server.rb:302:in `block in run'
-puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
-Started GET "/login" for 127.0.0.1 at 2018-04-11 11:51:42 -0400
-  
-ActionController::RoutingError (No route matches [GET] "/login"):
-  
-actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
-railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
-rack (2.0.4) lib/rack/runtime.rb:22:in `call'
-activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
-rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
-railties (5.1.6) lib/rails/engine.rb:522:in `call'
-puma (3.11.3) lib/puma/configuration.rb:225:in `call'
-puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
-puma (3.11.3) lib/puma/server.rb:438:in `process_client'
-puma (3.11.3) lib/puma/server.rb:302:in `block in run'
-puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
-Started POST "/login" for 127.0.0.1 at 2018-04-11 11:51:54 -0400
-Processing by SessionsController#create as */*
-  Parameters: {"username"=>"lshieh", "password"=>"[FILTERED]", "session"=>{"username"=>"lshieh", "password"=>"[FILTERED]"}}
-  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "lshieh"], ["LIMIT", 1]]
-  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND ("users"."id" != $2) LIMIT $3[0m  [["username", "lshieh"], ["id", 1], ["LIMIT", 1]]
-  [1m[35mSQL (0.9ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "6K6mPNMpmJb1aSxX85G4W782"], ["updated_at", "2018-04-11 15:51:54.577693"], ["id", 1]]
-  [1m[35m (16.5ms)[0m  [1m[35mCOMMIT[0m
-Completed 200 OK in 120ms (Views: 0.5ms | ActiveRecord: 21.1ms)
-
-
-Started POST "/login" for 127.0.0.1 at 2018-04-11 11:52:55 -0400
-Processing by SessionsController#create as */*
-  Parameters: {"username"=>"lshieh", "password"=>"[FILTERED]", "session"=>{"username"=>"lshieh", "password"=>"[FILTERED]"}}
-  [1m[36mUser Load (5.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "lshieh"], ["LIMIT", 1]]
-  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND ("users"."id" != $2) LIMIT $3[0m  [["username", "lshieh"], ["id", 1], ["LIMIT", 1]]
-  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "RtyoSt8pmRbvacY5eDn1UE6Q"], ["updated_at", "2018-04-11 15:52:55.591599"], ["id", 1]]
-  [1m[35m (5.5ms)[0m  [1m[35mCOMMIT[0m
-Completed 200 OK in 216ms (Views: 0.2ms | ActiveRecord: 16.7ms)
-
-
-Started POST "/profile" for 127.0.0.1 at 2018-04-11 11:53:01 -0400
-  
-ActionController::RoutingError (No route matches [POST] "/profile"):
-  
-actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
-railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
-rack (2.0.4) lib/rack/runtime.rb:22:in `call'
-activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
-rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
-railties (5.1.6) lib/rails/engine.rb:522:in `call'
-puma (3.11.3) lib/puma/configuration.rb:225:in `call'
-puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
-puma (3.11.3) lib/puma/server.rb:438:in `process_client'
-puma (3.11.3) lib/puma/server.rb:302:in `block in run'
-puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
-Started GET "/profile" for 127.0.0.1 at 2018-04-11 11:53:06 -0400
-Processing by UsersController#profile as */*
-  Parameters: {"user"=>{}}
-Filter chain halted as :require_login rendered or redirected
-Completed 401 Unauthorized in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/profile" for 127.0.0.1 at 2018-04-11 11:55:49 -0400
-Processing by UsersController#profile as */*
-  Parameters: {"user"=>{}}
-Filter chain halted as :require_login rendered or redirected
-Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/login" for 127.0.0.1 at 2018-04-11 11:55:55 -0400
-  
-ActionController::RoutingError (No route matches [GET] "/login"):
-  
-actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
-railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
-rack (2.0.4) lib/rack/runtime.rb:22:in `call'
-activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
-rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
-railties (5.1.6) lib/rails/engine.rb:522:in `call'
-puma (3.11.3) lib/puma/configuration.rb:225:in `call'
-puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
-puma (3.11.3) lib/puma/server.rb:438:in `process_client'
-puma (3.11.3) lib/puma/server.rb:302:in `block in run'
-puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
-Started POST "/login" for 127.0.0.1 at 2018-04-11 11:55:58 -0400
-Processing by SessionsController#create as */*
-  Parameters: {"username"=>"lshieh", "password"=>"[FILTERED]", "session"=>{"username"=>"lshieh", "password"=>"[FILTERED]"}}
-  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "lshieh"], ["LIMIT", 1]]
-  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND ("users"."id" != $2) LIMIT $3[0m  [["username", "lshieh"], ["id", 1], ["LIMIT", 1]]
-  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "3qpm5duDGLEHsNE8WvGBiFsp"], ["updated_at", "2018-04-11 15:55:58.543063"], ["id", 1]]
-  [1m[35m (172.5ms)[0m  [1m[35mCOMMIT[0m
-Completed 200 OK in 287ms (Views: 0.7ms | ActiveRecord: 179.9ms)
-
-
-Started GET "/profile" for 127.0.0.1 at 2018-04-11 11:56:12 -0400
-Processing by UsersController#profile as */*
-  Parameters: {"user"=>{}}
-Filter chain halted as :require_login rendered or redirected
-Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
-
-
-Started POST "/login" for 127.0.0.1 at 2018-04-11 11:57:08 -0400
-Processing by SessionsController#create as */*
-  Parameters: {"username"=>"lshieh", "password"=>"[FILTERED]", "session"=>{"username"=>"lshieh", "password"=>"[FILTERED]"}}
-  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "lshieh"], ["LIMIT", 1]]
-  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND ("users"."id" != $2) LIMIT $3[0m  [["username", "lshieh"], ["id", 1], ["LIMIT", 1]]
-  [1m[35mSQL (2.3ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "ZK9FpJZU1FNkkcKExJPcStH8"], ["updated_at", "2018-04-11 15:57:08.490443"], ["id", 1]]
-  [1m[35m (66.6ms)[0m  [1m[35mCOMMIT[0m
-Completed 200 OK in 162ms (Views: 0.2ms | ActiveRecord: 69.8ms)
-
-
-Started POST "/login" for 127.0.0.1 at 2018-04-11 11:57:43 -0400
-Processing by SessionsController#create as */*
-  Parameters: {"username"=>"lshieh", "password"=>"[FILTERED]", "auth_token"=>"ZK9FpJZU1FNkkcKExJPcStH8", "session"=>{"username"=>"lshieh", "password"=>"[FILTERED]", "auth_token"=>"ZK9FpJZU1FNkkcKExJPcStH8"}}
-  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "lshieh"], ["LIMIT", 1]]
-  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND ("users"."id" != $2) LIMIT $3[0m  [["username", "lshieh"], ["id", 1], ["LIMIT", 1]]
-  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "PJ6c5Z3Bfq4pkUmXyQB4ZQt6"], ["updated_at", "2018-04-11 15:57:43.178800"], ["id", 1]]
-  [1m[35m (75.4ms)[0m  [1m[35mCOMMIT[0m
-Completed 200 OK in 176ms (Views: 0.2ms | ActiveRecord: 76.9ms)
-
-
-Started GET "/profile" for 127.0.0.1 at 2018-04-11 11:57:51 -0400
-Processing by UsersController#profile as */*
-  Parameters: {"user"=>{}}
-Filter chain halted as :require_login rendered or redirected
-Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
-
-
-Started POST "/profile" for 127.0.0.1 at 2018-04-11 11:58:22 -0400
-  
-ActionController::RoutingError (No route matches [POST] "/profile"):
-  
-actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
-railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
-rack (2.0.4) lib/rack/runtime.rb:22:in `call'
-activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
-rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
-railties (5.1.6) lib/rails/engine.rb:522:in `call'
-puma (3.11.3) lib/puma/configuration.rb:225:in `call'
-puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
-puma (3.11.3) lib/puma/server.rb:438:in `process_client'
-puma (3.11.3) lib/puma/server.rb:302:in `block in run'
-puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
-Started POST "/login" for 127.0.0.1 at 2018-04-11 11:58:34 -0400
-Processing by SessionsController#create as */*
-  Parameters: {"username"=>"lshieh", "password"=>"[FILTERED]", "session"=>{"username"=>"lshieh", "password"=>"[FILTERED]"}}
-  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "lshieh"], ["LIMIT", 1]]
-  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mUser Exists (1.8ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND ("users"."id" != $2) LIMIT $3[0m  [["username", "lshieh"], ["id", 1], ["LIMIT", 1]]
-  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "Wc3KbX768ZBoSoKVkpcPZVvP"], ["updated_at", "2018-04-11 15:58:34.764483"], ["id", 1]]
-  [1m[35m (15.6ms)[0m  [1m[35mCOMMIT[0m
-Completed 200 OK in 123ms (Views: 0.2ms | ActiveRecord: 19.3ms)
-
-
-Started GET "/profile" for 127.0.0.1 at 2018-04-11 11:59:17 -0400
-Processing by UsersController#profile as */*
-  Parameters: {"user"=>{}}
-Filter chain halted as :require_login rendered or redirected
-Completed 401 Unauthorized in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms)
-
-
-Started GET "/login" for 127.0.0.1 at 2018-04-11 12:06:57 -0400
-  
-ActionController::RoutingError (No route matches [GET] "/login"):
-  
-actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
-railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
-rack (2.0.4) lib/rack/runtime.rb:22:in `call'
-activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
-rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
-railties (5.1.6) lib/rails/engine.rb:522:in `call'
-puma (3.11.3) lib/puma/configuration.rb:225:in `call'
-puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
-puma (3.11.3) lib/puma/server.rb:438:in `process_client'
-puma (3.11.3) lib/puma/server.rb:302:in `block in run'
-puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
-Started POST "/login" for 127.0.0.1 at 2018-04-11 12:07:09 -0400
-Processing by SessionsController#create as */*
-  Parameters: {"username"=>"lshieh", "password"=>"[FILTERED]", "session"=>{"username"=>"lshieh", "password"=>"[FILTERED]"}}
-  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "lshieh"], ["LIMIT", 1]]
-  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND ("users"."id" != $2) LIMIT $3[0m  [["username", "lshieh"], ["id", 1], ["LIMIT", 1]]
-  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "yNkKy33ksBBPMhsDSSeqY5A7"], ["updated_at", "2018-04-11 16:07:09.553754"], ["id", 1]]
-  [1m[35m (15.4ms)[0m  [1m[35mCOMMIT[0m
-Completed 200 OK in 109ms (Views: 0.2ms | ActiveRecord: 16.8ms)
-
-
-Started GET "/profile" for 127.0.0.1 at 2018-04-11 12:07:38 -0400
-Processing by UsersController#profile as */*
-  Parameters: {"user"=>{}}
-  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "yNkKy33ksBBPMhsDSSeqY5A7"], ["LIMIT", 1]]
-  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
-Completed 404 Not Found in 83ms (ActiveRecord: 0.9ms)
-
-
-  
-ActiveRecord::RecordNotFound (Couldn't find User):
-  
-app/controllers/users_controller.rb:10:in `profile'
-Started GET "/profile" for 127.0.0.1 at 2018-04-11 12:11:55 -0400
-Processing by UsersController#profile as */*
-  Parameters: {"user"=>{}}
-Filter chain halted as :require_login rendered or redirected
-Completed 401 Unauthorized in 14ms (Views: 0.2ms | ActiveRecord: 0.0ms)
-
-
-Started POST "/profile" for 127.0.0.1 at 2018-04-11 12:12:54 -0400
-  
-ActionController::RoutingError (No route matches [POST] "/profile"):
-  
-actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
-railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
-rack (2.0.4) lib/rack/runtime.rb:22:in `call'
-activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
-rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
-railties (5.1.6) lib/rails/engine.rb:522:in `call'
-puma (3.11.3) lib/puma/configuration.rb:225:in `call'
-puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
-puma (3.11.3) lib/puma/server.rb:438:in `process_client'
-puma (3.11.3) lib/puma/server.rb:302:in `block in run'
-puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
-Started POST "/login" for 127.0.0.1 at 2018-04-11 12:13:20 -0400
-Processing by SessionsController#create as */*
-  Parameters: {"username"=>"lshieh", "password"=>"[FILTERED]", "session"=>{"username"=>"lshieh", "password"=>"[FILTERED]"}}
-  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "lshieh"], ["LIMIT", 1]]
-  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND ("users"."id" != $2) LIMIT $3[0m  [["username", "lshieh"], ["id", 1], ["LIMIT", 1]]
-  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "nDBkjfMqGVk9mWMDvmpcb13L"], ["updated_at", "2018-04-11 16:13:20.780311"], ["id", 1]]
-  [1m[35m (70.0ms)[0m  [1m[35mCOMMIT[0m
-Completed 200 OK in 165ms (Views: 0.2ms | ActiveRecord: 71.2ms)
-
-
-Started GET "/profile" for 127.0.0.1 at 2018-04-11 12:13:37 -0400
-Processing by UsersController#profile as */*
-  Parameters: {"user"=>{}}
-  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "yNkKy33ksBBPMhsDSSeqY5A7"], ["LIMIT", 1]]
-Filter chain halted as :require_login rendered or redirected
-Completed 401 Unauthorized in 6ms (Views: 0.8ms | ActiveRecord: 0.6ms)
-
-
-Started GET "/profile" for 127.0.0.1 at 2018-04-11 12:14:07 -0400
-Processing by UsersController#profile as */*
-  Parameters: {"user"=>{}}
-  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "nDBkjfMqGVk9mWMDvmpcb13L"], ["LIMIT", 1]]
-  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
-Completed 404 Not Found in 3ms (ActiveRecord: 0.6ms)
-
-
-  
-ActiveRecord::RecordNotFound (Couldn't find User):
-  
-app/controllers/users_controller.rb:10:in `profile'
-Started GET "/profile" for 127.0.0.1 at 2018-04-11 12:14:55 -0400
-Processing by UsersController#profile as */*
-  Parameters: {"user"=>{}}
-  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "nDBkjfMqGVk9mWMDvmpcb13L"], ["LIMIT", 1]]
-  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
-Completed 404 Not Found in 3ms (ActiveRecord: 0.6ms)
-
-
-  
-ActiveRecord::RecordNotFound (Couldn't find User):
-  
-app/controllers/users_controller.rb:10:in `profile'
-Started GET "/profile" for 127.0.0.1 at 2018-04-11 12:15:09 -0400
-Processing by UsersController#profile as */*
-  Parameters: {"user"=>{}}
-  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "nDBkjfMqGVk9mWMDvmpcb13L"], ["LIMIT", 1]]
-  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
-Completed 404 Not Found in 7ms (ActiveRecord: 1.4ms)
-
-
-  
-ActiveRecord::RecordNotFound (Couldn't find User):
-  
-app/controllers/users_controller.rb:10:in `profile'
-Started GET "/login" for 127.0.0.1 at 2018-04-11 12:21:09 -0400
-  
-ActionController::RoutingError (No route matches [GET] "/login"):
-  
-actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
-railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
-rack (2.0.4) lib/rack/runtime.rb:22:in `call'
-activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
-rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
-railties (5.1.6) lib/rails/engine.rb:522:in `call'
-puma (3.11.3) lib/puma/configuration.rb:225:in `call'
-puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
-puma (3.11.3) lib/puma/server.rb:438:in `process_client'
-puma (3.11.3) lib/puma/server.rb:302:in `block in run'
-puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
-Started POST "/login" for 127.0.0.1 at 2018-04-11 12:21:14 -0400
-Processing by SessionsController#create as */*
-  Parameters: {"username"=>"lshieh", "password"=>"[FILTERED]", "session"=>{"username"=>"lshieh", "password"=>"[FILTERED]"}}
-  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "lshieh"], ["LIMIT", 1]]
-  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
-  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND ("users"."id" != $2) LIMIT $3[0m  [["username", "lshieh"], ["id", 1], ["LIMIT", 1]]
-  [1m[35mSQL (17.8ms)[0m  [1m[33mUPDATE "users" SET "auth_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["auth_token", "inkdDhkT46J8MA4jqvdYGbZY"], ["updated_at", "2018-04-11 16:21:14.677225"], ["id", 1]]
-  [1m[35m (36.5ms)[0m  [1m[35mCOMMIT[0m
-Completed 200 OK in 297ms (Views: 0.2ms | ActiveRecord: 142.7ms)
-
-
-Started POST "/profile" for 127.0.0.1 at 2018-04-11 12:21:20 -0400
-  
-ActionController::RoutingError (No route matches [POST] "/profile"):
-  
-actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
-railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
-rack (2.0.4) lib/rack/runtime.rb:22:in `call'
-activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
-rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
-railties (5.1.6) lib/rails/engine.rb:522:in `call'
-puma (3.11.3) lib/puma/configuration.rb:225:in `call'
-puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
-puma (3.11.3) lib/puma/server.rb:438:in `process_client'
-puma (3.11.3) lib/puma/server.rb:302:in `block in run'
-puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
-Started GET "/profile" for 127.0.0.1 at 2018-04-11 12:21:32 -0400
-Processing by UsersController#profile as */*
-  Parameters: {"user"=>{}}
-  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "nDBkjfMqGVk9mWMDvmpcb13L"], ["LIMIT", 1]]
-Filter chain halted as :require_login rendered or redirected
-Completed 401 Unauthorized in 4ms (Views: 0.4ms | ActiveRecord: 1.1ms)
-
-
-Started GET "/profile" for 127.0.0.1 at 2018-04-11 12:27:16 -0400
-Processing by UsersController#profile as */*
-  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "nDBkjfMqGVk9mWMDvmpcb13L"], ["LIMIT", 1]]
-Filter chain halted as :require_login rendered or redirected
-Completed 401 Unauthorized in 10ms (Views: 0.2ms | ActiveRecord: 2.0ms)
-
-
-Started GET "/profile" for 127.0.0.1 at 2018-04-11 12:27:33 -0400
-Processing by UsersController#profile as */*
-  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT $2[0m  [["auth_token", "nDBkjfMqGVk9mWMDvmpcb13L"], ["LIMIT", 1]]
-Filter chain halted as :require_login rendered or redirected
-Completed 401 Unauthorized in 3ms (Views: 0.3ms | ActiveRecord: 0.3ms)
-
-
-Started GET "/login" for 127.0.0.1 at 2018-04-11 12:28:41 -0400
-  
-ActionController::RoutingError (No route matches [GET] "/login"):
-  
-actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
-railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
-rack (2.0.4) lib/rack/runtime.rb:22:in `call'
-activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
-rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
-railties (5.1.6) lib/rails/engine.rb:522:in `call'
-puma (3.11.3) lib/puma/configuration.rb:225:in `call'
-puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
-puma (3.11.3) lib/puma/server.rb:438:in `process_client'
-puma (3.11.3) lib/puma/server.rb:302:in `block in run'
-puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
-Started POST "/login" for 127.0.0.1 at 2018-04-11 12:28:57 -0400
-Processing by SessionsController#create as */*
-  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
-Completed 500 Internal Server Error in 137ms (ActiveRecord: 0.4ms)
-
-
-  
-NoMethodError (undefined method `render_unauthorized' for #<SessionsController:0x0055f587f7a2d8>
-Did you mean?  render_to_body):
-  
-app/controllers/sessions_controller.rb:9:in `create'
-Started GET "/login" for 127.0.0.1 at 2018-04-11 12:29:02 -0400
-  
-ActionController::RoutingError (No route matches [GET] "/login"):
-  
-actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
-railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
-activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
-railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
-rack (2.0.4) lib/rack/runtime.rb:22:in `call'
-activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
-actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
-rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
-railties (5.1.6) lib/rails/engine.rb:522:in `call'
-puma (3.11.3) lib/puma/configuration.rb:225:in `call'
-puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
-puma (3.11.3) lib/puma/server.rb:438:in `process_client'
-puma (3.11.3) lib/puma/server.rb:302:in `block in run'
-puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
-Started POST "/login" for 127.0.0.1 at 2018-04-11 12:29:22 -0400
-Processing by SessionsController#create as */*
-  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
-Completed 500 Internal Server Error in 91ms (ActiveRecord: 0.6ms)
-
-
-  
-NoMethodError (undefined method `render_unauthorized' for #<SessionsController:0x0055f587a42d60>
-Did you mean?  render_to_body):
-  
-app/controllers/sessions_controller.rb:9:in `create'
-Started POST "/login" for 127.0.0.1 at 2018-04-11 12:29:30 -0400
-Processing by SessionsController#create as */*
-  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
-Completed 500 Internal Server Error in 96ms (ActiveRecord: 0.5ms)
-
-
-  
-NoMethodError (undefined method `render_unauthorized' for #<SessionsController:0x0055f587ffe4c0>
-Did you mean?  render_to_body):
-  
-app/controllers/sessions_controller.rb:9:in `create'
