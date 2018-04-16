@@ -42,7 +42,7 @@ class SongsController < ApplicationController
 	private
 
 	def song_params
-		params.permit(:title,:notes,:pattern,:created_by,:recently_edited_by)
+		params.permit(:title,:created_by,:recently_edited_by)
 	end
 
 	def set_song

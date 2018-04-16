@@ -1,13 +1,13 @@
-import React, {Component} from 'react'
+import React from 'react'
 import apiServices from '../services/apiServices'
 
 import Song from './Song'
 import SongAddForm from './SongAddForm'
 
-class SongList extends Component {
+class SongList extends React.Component {
 	constructor() {
 		super()
-		this.state ={
+		this.state = {
 			apiDataLoaded: false,
 			apiData: null
 		}
@@ -34,6 +34,7 @@ class SongList extends Component {
 	render() {
 		return (
 			<div className='song-list'>
+				<h1>Song List</h1>
 				{this.state.apiDataLoaded ? this.renderSongs() : <h1>Loading...</h1>}
 				<SongAddForm />
 			</div>

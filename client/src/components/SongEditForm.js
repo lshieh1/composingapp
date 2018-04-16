@@ -1,6 +1,9 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
 import services from '../services/apiServices'
+import instruments from '../services/instruments'
+
+import BeatList from './BeatList'
 
 class SongEditForm extends React.Component {
 	constructor() {
@@ -12,6 +15,7 @@ class SongEditForm extends React.Component {
 			created_by: '',
 			notes: '',
 			pattern: '',
+			instrument: '',
 			recently_edited_by: '',
 			fireRedirect: false
 		}
@@ -20,14 +24,13 @@ class SongEditForm extends React.Component {
 	}
 
 	componentDidMount() {
+		console.log(this.props)
 		services.getOneSong(this.props.match.params.id).then(song => {
 			this.setState({
 				apiDataLoaded: true,
 				apiData: song.data,
 				title: song.data.song.title,
 				created_by: song.data.song.created_by,
-				notes: song.data.song.notes,
-				pattern: song.data.pattern,
 				recently_edited_by: song.data.recently_added_by
 			})
 		}).catch(err => {
@@ -54,11 +57,29 @@ class SongEditForm extends React.Component {
 		}) 
 	}
 
+	cleanInstrumentString(str) {
+		let array = str.split('_')
+		let result = ''
+		array.forEach(a => {
+			let hold = a.charAt(0).toUpperCase()+a.slice(1)
+			result+=hold+' '
+		})
+		return result
+	}
+
 	renderEditForm() {
 		return (
 			<form className='edit-form' onSubmit={this.handleFormSubmit}>
-				
 			</form>
+		)
+	}
+
+	render() {
+		return (
+			<div className='song-edit-form'>
+				<h1>Add Your Own Beat!</h1>
+				<BeatList song_id={this.props.match.params.id}/>
+			</div>
 		)
 	}
 }

@@ -39,7 +39,7 @@ class SongAddForm extends React.Component {
 				<form onSubmit={this.handleFormSubmit}>
 					<input type='text' name='title' placeholder='Song Title' onChange={this.handleInputChange} />
 					<input type='text' name='created_by' placeholder='Your name/sn' onChange={this.handleInputChange} />
-					<input type='submit' value='Create Song' />
+					<input type='submit' value='Create Song'/>
 				</form>
 				{this.state.fireRedirect ? <Redirect to='/songs' /> : ''}
 			</div>

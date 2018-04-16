@@ -5,9 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Song.create([
+
+Beat.create([
 	{
-		title: 'test',
-		created_by: 'lil'
+		instrument: 'Snare Drum 1',
+		instrument_id: 15,
+		bits: '0010010001000101',
+		song_id: 1
 	}
 ])

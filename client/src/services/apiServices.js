@@ -32,6 +32,23 @@ class apiServices {
 			}
 		})
 	}
+
+	getBeats(song_id) {
+		return axios.get(`/api/songs/${song_id}/beats`)
+	}
+
+	createBeat(song_id,beat) {
+		return axios({
+			method: 'POST',
+			url: `/api/songs/${song_id}/beats`,
+			data: {
+				instrument: beat.instrument,
+				instrument_id: beat.instrument_id,
+				bits: beat.bits,
+				song_id: song_id
+			}
+		})
+	}
 }
 
 export default new apiServices()

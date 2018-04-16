@@ -7,15 +7,16 @@ class SingleSong extends React.Component {
 		super()
 		this.state = {
 			apiDataLoaded: false,
-			apiData: null,
-			fireRedirect: false
+			apiData: null
 		}
 	}
 
 	componentDidMount() {
 		services.getOneSong(this.props.match.params.id).then(song => {
-			apiDataLoaded: true,
-			apiData: song.data
+			this.setState({
+				apiDataLoaded: true,
+				apiData: song.data
+			})
 		}).catch(err => {
 			console.log('err',err)
 		})
@@ -25,6 +26,15 @@ class SingleSong extends React.Component {
 		return (
 			<div className='single-song'>
 				<h1>{this.state.apiData.song.title}</h1>
+				<a href={`/songs/${this.state.apiData.song.id}/edit`}>Add to Song!</a>
+			</div>
+		)
+	}
+
+	render() {
+		return (
+			<div className='song-single'>
+				{this.state.apiDataLoaded ? this.renderSong() : ''}
 			</div>
 		)
 	}
