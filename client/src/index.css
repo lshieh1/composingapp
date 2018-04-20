@@ -6,6 +6,7 @@ body {
 
 * {
 	text-align: center;
+	font-family: 'Crimson Text', serif;
 }
 
 .btn span.glyphicon {    			
@@ -14,3 +15,4 @@ body {
 .btn.active span.glyphicon {				
 	opacity: 1;				
 }
+

@@ -35,6 +35,7 @@ class SongList extends React.Component {
 		return (
 			<div className='song-list'>
 				<h1>Song List</h1>
+				<p>IMPORTANT!: have to refresh to see newly created song</p>
 				{this.state.apiDataLoaded ? this.renderSongs() : <h1>Loading...</h1>}
 				<SongAddForm />
 			</div>

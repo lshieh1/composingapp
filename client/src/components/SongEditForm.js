@@ -1,7 +1,6 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
 import services from '../services/apiServices'
-import instruments from '../services/instruments'
 
 import BeatList from './BeatList'
 

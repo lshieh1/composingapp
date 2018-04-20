@@ -4,7 +4,6 @@ import {Redirect} from 'react-router-dom'
 import services from '../services/apiServices'
 
 import Beat from './Beat'
-import BeatAddForm from './BeatAddForm'
 
 class BeatList extends React.Component {
 	constructor() {
@@ -18,8 +17,10 @@ class BeatList extends React.Component {
 			song_id: -1,
 			fireRedirect: false 
 		}
-		this.handleInputChange = this.handleInputChange.bind(this)
 		this.handleFormSubmit = this.handleFormSubmit.bind(this)
+		this.playLoop = this.playLoop.bind(this)
+		this.stopLoop = this.stopLoop.bind(this)
+		this.onSelectDrum = this.onSelectDrum.bind(this)
 		this.tracks = []
 		this.drums = []
 		this.beats = []
@@ -36,15 +37,6 @@ class BeatList extends React.Component {
 		}).catch(err => {
 			console.log('err',err)
 		})
-	}
-
-	handleInputChange(e) {
-		let name = e.target.name
-		let value = e.target.value
-		this.setState({
-			[name]: value
-		})
-		this.tracks
 	}
 
 	handleFormSubmit(e) {
@@ -89,7 +81,6 @@ class BeatList extends React.Component {
 	onSelectDrum(e) {
 		let list = e.target
 		let n = list.options[list.selectedIndex].getAttribute('value')
-		let name = list.options[list.selectedIndex].getAttribute('')
 		this.midiSounds.cacheDrum(n)
 		this.drums.push(parseInt(n))
 		console.log(this.drums)
@@ -146,11 +137,11 @@ class BeatList extends React.Component {
 		console.log(this.props)
 		return (
 			<div className='beat-list'>
-				<h1></h1>
+				<a href='/songs'> Back to Songs!</a>
 				{this.state.apiDataLoaded ? this.renderBeats() : <h2>Loading...</h2>}
 				<div>
 					<form onSubmit={this.handleFormSubmit}>
-						<select value={this.state.instrument_id} onChange={this.onSelectDrum.bind(this)}>{this.createSelectItems()}</select>
+						<select value={this.state.instrument_id} onChange={this.onSelectDrum}>{this.createSelectItems()}</select>
 						<input type="checkbox" defaultChecked={0} onChange={(e)=>this.toggleDrum(0)} />
 						<input type="checkbox" defaultChecked={0} onChange={(e)=>this.toggleDrum(1)} />
 						<input type="checkbox" defaultChecked={0} onChange={(e)=>this.toggleDrum(2)} />
@@ -171,12 +162,14 @@ class BeatList extends React.Component {
 							<input type='submit' value='Add New Beats!' />
 						</div>
 					</form>
+					{this.state.fireRedirect ? <Redirect to={`/songs/${this.props.song_id}/edit`} /> : ''}
 				</div>
-				{this.state.fireRedirect ? <Redirect exact to={`/songs/${this.props.song_id}/edit`} /> : ''}
 				<div>
-				<button onClick={this.playLoop.bind(this)}>Play Track</button>
-				<button onClick={this.stopLoop.bind(this)}>Stop Track</button>
+				<p>IMPORTANT!: add beats and refresh before pressing play... have to fix that soon</p>
+				<button onClick={this.playLoop}>Play Track</button>
+				<button onClick={this.stopLoop}>Stop Track</button>
 				</div>
+				Created with the help of:
 				<MIDISounds ref={(ref) => (this.midiSounds = ref)} appElementName='root' drums={this.state.apiDataLoaded ? this.getDrums() : <h2>Loading...</h2>}/>
 			</div>
 		)
