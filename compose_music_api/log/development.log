@@ -8063,3 +8063,25 @@ Processing by SongsController#index as HTML
 Completed 200 OK in 8ms (Views: 7.4ms | ActiveRecord: 0.4ms)
 
 
+Started GET "/api/songs" for 127.0.0.1 at 2018-04-20 17:28:42 -0400
+  [1m[35m (14.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SongsController#index as HTML
+  [1m[36mSong Load (1.1ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+Completed 200 OK in 72ms (Views: 32.0ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/api/songs/7" for 127.0.0.1 at 2018-04-20 17:28:48 -0400
+Started GET "/api/songs/7/beats" for 127.0.0.1 at 2018-04-20 17:28:48 -0400
+Processing by SongsController#show as HTML
+  Parameters: {"id"=>"7"}
+Processing by BeatsController#index as HTML
+  Parameters: {"song_id"=>"7"}
+  [1m[36mSong Load (0.9ms)[0m  [1m[34mSELECT  "songs".* FROM "songs" WHERE "songs"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mSong Load (0.5ms)[0m  [1m[34mSELECT  "songs".* FROM "songs" WHERE "songs"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+Completed 200 OK in 371ms (Views: 0.5ms | ActiveRecord: 25.8ms)
+
+
+  [1m[36mBeat Load (0.4ms)[0m  [1m[34mSELECT "beats".* FROM "beats" WHERE "beats"."song_id" = $1[0m  [["song_id", 7]]
+Completed 200 OK in 639ms (Views: 138.6ms | ActiveRecord: 11.8ms)
+
+
